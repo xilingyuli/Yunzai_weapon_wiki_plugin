@@ -1,0 +1,64 @@
+{{extend elemLayout}}
+
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{_miao_path}}common/tpl.css"/>
+<link rel="stylesheet" type="text/css" href="{{_res_path}}wiki/weapon-wiki.css"/>
+{{/block}}
+
+{{block 'main'}}
+<div class="w-wrap">
+  <div class="w-head">
+    <div class="w-name">{{weapon.name}}</div>
+    <div class="w-meta">
+      <span class="w-star star{{weapon.star}}">{{weapon.star}}★</span>
+      <span class="w-type">{{weapon.typeName}}</span>
+      {{if charName}}<span class="w-owner">{{charName}}专武</span>{{/if}}
+    </div>
+  </div>
+  <div class="w-body">
+    <div class="w-left">
+    <div class="w-pic" style="background-image:url({{_miao_path}}{{weapon.pic}})">
+      {{if weapon.icon}}<div class="w-icon" style="background-image:url({{_miao_path}}{{weapon.icon}})"></div>{{/if}}
+    </div>
+      <div class="w-mat">
+        <div class="w-mat-title">突破材料{{if cost}}<span class="w-mat-sub">满级合计</span>{{/if}}</div>
+        {{if cost}}
+        <div class="w-cost">
+          {{each cost.families row}}
+          <div class="w-cost-row">
+            <div class="w-cost-icon"><img src="{{_miao_path}}{{row.icon}}"/></div>
+            <div class="w-cost-name">{{row.name}}</div>
+            <div class="w-cost-count">{{row.counts}}</div>
+          </div>
+          {{/each}}
+          <div class="w-cost-coin">摩拉 ×{{cost.coin}}</div>
+        </div>
+        {{else}}
+        <div class="w-mat-list">
+          {{each materials ds}}
+          <div class="w-cost-row">
+            <div class="w-cost-icon"><img src="{{_miao_path}}{{ds.icon}}"/></div>
+            <div class="w-cost-name">{{ds.name}}</div>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    <div class="w-right">
+      <div class="w-desc">{{@weapon.desc}}</div>
+      <ul class="w-attr">
+        {{each attrs ds}}
+        <li><span class="t">{{ds.title}}</span><span class="v">{{ds.value}}</span></li>
+        {{/each}}
+      </ul>
+      {{if weapon.affixTitle || weapon.affixDesc}}
+      <div class="w-affix">
+        <div class="w-affix-title">{{weapon.affixTitle}}<span class="w-refine">精炼1~5阶</span></div>
+        <div class="w-affix-desc">{{@weapon.affixDesc}}</div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+{{/block}}

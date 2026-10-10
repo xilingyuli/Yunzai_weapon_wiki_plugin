@@ -1,0 +1,7 @@
+{
+  "name": "weapon-wiki",
+  "version": "1.0.0",
+  "description": "原神武器图鉴 / 角色专武（依赖 miao-plugin 提供数据与图片）",
+  "type": "module",
+  "private": true
+}
